@@ -59,16 +59,10 @@ addFood(mashPotatoes[0], '#mashPotatoes').then(() => {
 
 // Iteration 3 using async and await
 
-async function makeFood() {
-  await addFood(brusselSprouts[0], '#brusselSprouts');
-  await addFood(brusselSprouts[1], '#brusselSprouts');
-  await addFood(brusselSprouts[2], '#brusselSprouts');
-  await addFood(brusselSprouts[3], '#brusselSprouts');
-  await addFood(brusselSprouts[4], '#brusselSprouts');
-  await addFood(brusselSprouts[5], '#brusselSprouts');
-  await addFood(brusselSprouts[6], '#brusselSprouts');
-  await addFood(brusselSprouts[7], '#brusselSprouts');
-  await addFood(brusselSprouts[8], '#brusselSprouts');
+async function makeFood(steps) {
+  for(step of steps) {
+    await addFood(step, '#brusselSprouts');
+  }
 
   let table = document.querySelector('#table')
   let img = document.createElement("img");
@@ -77,7 +71,7 @@ async function makeFood() {
   resolveP3(5);
 }
 
-makeFood();
+makeFood(brusselSprouts);
 
 Promise.all([p1, p2, p3]).then(() => {
   document.querySelector('body').innerHTML += `<button>Diner is served.</button>`; 
